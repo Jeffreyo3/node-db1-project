@@ -14,8 +14,9 @@ router.get('/', async (req, res) => {
 
 // GET by id
 router.get('/:id', async (req, res) => {
+    const { id } = req.params;
     try {
-        const [account] = await db('accounts').where('id', req.params.id);
+        const [account] = await db('accounts').where('id', id);
         res.json(account);
     } catch (err) {
         res.status(500).json({ message: "Failed to get account", err });
